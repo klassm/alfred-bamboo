@@ -28,19 +28,15 @@
     ""
   ],
   "dependencies": {
-    "alfred-link": "^0.1.4",
-    "alfred-notifier": "^0.1.0",
-    "alfy": "^0.3.0",
+    "alfred-link": "^0.3.1",
+    "alfred-notifier": "^0.2.3",
+    "alfy": "^0.10.0",
+    "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
     "request": "^2.3.4",
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
-    "alfy-test": "^0.3.0",
-    "ava": "^0.15.2",
-    "xo": "^0.16.0"
-  },
-  "xo": {
-    "esnext": true,
-    "space": 2
+    "@types/axios": "^0.14.0"
   }
 }

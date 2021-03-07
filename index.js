@@ -1,43 +1,40 @@
+#!/usr/local/bin/node
+
 'use strict';
 const alfy = require('alfy');
-const alfredNotifier = require('alfred-notifier');
-const Promise = require("bluebird");
-const request = require('request-promise');
+const axios = require('axios');
 
-const hosts = alfy.config.get('hosts');
+const host = alfy.config.get('host');
 const auth = alfy.config.get('auth');
 
-var requestList = [];
-for (var host in hosts) {
-	requestList.push({
-		url: hosts[host] + '/rest/api/latest/plan?max-result=300',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + auth,
-			'Accept': 'application/json'
-		},
-		method: 'GET'
-	});
-}
-
-Promise.map(requestList, function(obj) {
-	return request(obj).then(function(body) {
-		return JSON.parse(body);
-	});
-}).then(function(data) {
-	var items = [];
-	for (var entry in data) {
-		const list = data[entry]['plans']['plan'];
-		items = items.concat(alfy
-			.matches(alfy.input, list, 'name')
-			.map(x => ({
-				title: x.name,
-				subtitle: x.shortName,
-				arg: x['link'].href.substring(0, x['link'].href.lastIndexOf("/rest")) + '/browse/' + x['planKey'].key
-			})));
+async function queryAll() {
+	const cacheKey = "bambooQueryData";
+	const data = alfy.cache.get(cacheKey);
+	if (data) {
+		return data;
 	}
 
+	const result = await axios.get(`${host}/rest/api/latest/plan?max-result=3000`,
+			{
+				headers: {
+					authorization: `Basic ${auth}`,
+					accept: 'application/json'
+				}
+			});
+	const plans = result.data.plans.plan;
+	alfy.cache.set(cacheKey, plans, {maxAge: 1000 * 60 * 5})
+	return plans;
+}
+
+queryAll().then(data => {
+	const items = alfy
+	.matches(alfy.input, data, 'name')
+	.map(x => ({
+		title: x.name,
+		subtitle: x.shortName,
+		arg: x['link'].href.substring(0, x['link'].href.lastIndexOf("/rest"))
+				+ '/browse/' + x['planKey'].key
+	}))
+
 	alfy.output(items);
-}, function(err) {
-	alfy.error(err);
-});
+}).catch(error => alfy.error(error));

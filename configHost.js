@@ -1,7 +1,6 @@
+#!/usr/local/bin/node
+
 'use strict';
 const alfy = require('alfy');
-const alfredNotifier = require('alfred-notifier');
 
-alfredNotifier();
-
-alfy.config.set('hosts', alfy.input);
+alfy.config.set('host', alfy.input);
