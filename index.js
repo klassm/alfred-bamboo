@@ -22,7 +22,7 @@ async function queryAll() {
 				}
 			});
 	const plans = result.data.plans.plan;
-	alfy.cache.set(cacheKey, plans, {maxAge: 1000 * 60 * 5})
+	alfy.cache.set(cacheKey, plans, {maxAge: 1000 * 60 * 60})
 	return plans;
 }
 
