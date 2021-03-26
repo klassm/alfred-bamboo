@@ -131,7 +131,7 @@
           <key>scriptfile</key>
           <string>index.js</string>
           <key>subtext</key>
-          <string>Update available: 1.4.2 → 1.4.3. Run `npm install -g alfred-bamboo`</string>
+          <string> </string>
           <key>title</key>
           <string>alfred-bamboo</string>
           <key>type</key>
@@ -204,7 +204,7 @@ open $query/branches</string>
           <key>keyword</key>
           <string>boo-auth</string>
           <key>subtext</key>
-          <string>Update available: 1.4.2 → 1.4.3. Run `npm install -g alfred-bamboo`</string>
+          <string> </string>
           <key>text</key>
           <string>alfred-bamboo auth configuration</string>
           <key>withspace</key>
@@ -248,7 +248,7 @@ open $query/branches</string>
           <key>keyword</key>
           <string>boo-host</string>
           <key>subtext</key>
-          <string>Update available: 1.4.2 → 1.4.3. Run `npm install -g alfred-bamboo`</string>
+          <string> </string>
           <key>text</key>
           <string>alfred-bamboo host configuration</string>
           <key>withspace</key>

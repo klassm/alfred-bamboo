@@ -17,7 +17,7 @@ async function queryAll() {
 	const result = await axios.get(`${host}/rest/api/latest/plan?max-result=3000`,
 			{
 				headers: {
-					authorization: `Basic ${auth}`,
+					authorization: `Bearer ${auth}`,
 					accept: 'application/json'
 				}
 			});
