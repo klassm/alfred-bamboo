@@ -349,6 +349,6 @@ open $query/branches</string>
     <key>version</key>
     <string>2.0.0</string>
     <key>webaddress</key>
-    <string>https://github.com/codebud7/alfred-bamboo#readme</string>
+    <string>https://github.com/klassm/alfred-bamboo</string>
   </dict>
 </plist>
