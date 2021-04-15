@@ -28,7 +28,6 @@
   ],
   "dependencies": {
     "alfred-link": "^0.3.1",
-    "alfred-notifier": "^0.2.3",
     "alfy": "^0.10.0",
     "axios": "^0.21.1"
   },
